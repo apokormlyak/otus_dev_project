@@ -5,7 +5,15 @@
 {% block body %}
   <h1>{{object.name}}</h1>
     {{object.category.name}}
+
 <div>
-  <a href="{% url 'warehouses:cargo_list' %}">Вернуться к списку</a>
+    <ul class="nav flex-column">
+  <li class="nav-item">
+    <a class="nav-link" aria-current="page" href="{% url 'warehouses:delete_cargo' pk=object.pk %}">Удалить груз</a>
+  </li>
+  <li class="nav-item">
+    <a href="{% url 'warehouses:cargo_list' %}">Вернуться к списку</a>
+  </li>
+</ul>
 </div>
 {% endblock %}

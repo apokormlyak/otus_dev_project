@@ -7,7 +7,14 @@
   <h1>{{object.name}}</h1>
     {{object.category.name}}
 <div>
-  <a href="{% url 'warehouses:storagetype_list' %}">Вернуться к списку</a>
+    <ul class="nav flex-column">
+  <li class="nav-item">
+    <a class="nav-link" aria-current="page" href="{% url 'warehouses:delete_storagetype' pk=object.pk %}">Удалить способ хранения</a>
+  </li>
+  <li class="nav-item">
+    <a href="{% url 'warehouses:storagetype_list' %}">Вернуться к списку</a>
+  </li>
+</ul>
 </div>
 
 {% endblock %}

@@ -1,0 +1,15 @@
+{% block title %}
+  Удалить склад {{object.name}}
+{% endblock %}
+
+{% block body %}
+  <h1>{{object.name}}</h1>
+    {{object.category.name}}
+    будет удален из списка складов
+    <p></p>
+    Удалить?
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Да</button>
+    </form>
+{% endblock %}
