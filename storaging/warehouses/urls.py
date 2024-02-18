@@ -5,9 +5,18 @@ app_name = "warehouses"
 
 urlpatterns = [
     path(
+        '',
+        views.index_view,
+        name='index'),
+    path(
         "warehouse_list/",
         views.WarehouseListView.as_view(),
         name="warehouse_list",
+    ),
+    path(
+        "create_warehouse/",
+        views.WarehouseCreateView.as_view(),
+        name="create_warehouse",
     ),
     path(
         "storagetype_list/",
@@ -34,4 +43,44 @@ urlpatterns = [
         views.CargoDetailView.as_view(),
         name="cargo_detail",
     ),
+    path(
+        "create_cargo/",
+        views.CargoCreateView.as_view(),
+        name="create_cargo",
+    ),
+    path(
+        "create_storagetype/",
+        views.StorageTypeCreateView.as_view(),
+        name="create_storagetype",
+    ),
+    path(
+        "update_cargo/<int:pk>/",
+        views.CargoUpdateView.as_view(),
+        name="update_cargo",
+    ),
+    path(
+        "delete_cargo/<int:pk>/",
+        views.CargoDeleteView.as_view(),
+        name="delete_cargo",
+    ),
+    path(
+        "update_storagetype/<int:pk>/",
+        views.StorageTypeUpdateView.as_view(),
+        name="update_storagetype",
+    ),
+    path(
+        "delete_storagetype/<int:pk>/",
+        views.StorageTypeDeleteView.as_view(),
+        name="delete_storagetype",
+    ),
+    path(
+        "update_warehouse/<int:pk>/",
+        views.WarehouseTypeUpdateView.as_view(),
+        name="update_warehouse",
+    ),
+    path(
+        "delete_warehouse/<int:pk>/",
+        views.WarehouseDeleteView.as_view(),
+        name="delete_warehouse",
+    )
 ]
