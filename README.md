@@ -25,3 +25,9 @@ docker-compose run --rm backend ./manage.py createsuperuser
 ```
 docker-compose run --rm  backend pytest
 ```
+
+
+```
+python manage.py makemigrations
+docker-compose run --rm backend  sh -c "python manage.py migrate"
+```

@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "warehouses.apps.WarehousesConfig",
     'crispy_forms',
-    'crispy_bootstrap4'
+    'crispy_bootstrap4',
+    'django_celery_beat'
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
@@ -135,3 +136,12 @@ STATIC_ROOT = BASE_DIR / "django_static"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+CELERY_RESULT_BACKEND = "rpc://"
+# result_persistent = False
+CELERY_RESULT_PERSISTENT = False
+CELERY_BROKER_URL = "redis://redis:6379"
+
+CELERY_TASK_ROUTES = {
+    'warehouses.utils.get_the_quote_of_the_day': {'queue': 'quick'},
+}
