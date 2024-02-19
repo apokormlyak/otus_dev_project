@@ -16,7 +16,7 @@ class StorageType(models.Model):
     name = models.CharField('Наименование типа хранения', max_length=64, db_index=True)
     description = models.CharField('Описание', max_length=150, null=True, blank=True)
     storage_value = models.FloatField('Вместимость')
-    warehouse = models.ManyToManyField('Warehouse', related_name='storage_types')
+    warehouse = models.ManyToManyField('Warehouse', verbose_name='Склад')
 
     class Meta:
         verbose_name = 'Тип хранения'
@@ -28,8 +28,7 @@ class Cargo(models.Model):
     description = models.CharField('Описание', max_length=150, null=True, blank=True)
     cargo_value = models.FloatField('Объем груза')
     cargo_weight = models.FloatField('Вес груза')
-    storage_type = models.ForeignKey(StorageType, verbose_name='Тип хранения', on_delete=models.CASCADE,
-                                     null=True)
+    storage_type = models.ForeignKey(StorageType, verbose_name='Тип хранения', on_delete=models.CASCADE)
     warehouse = models.ForeignKey(Warehouse, verbose_name='Склад', on_delete=models.CASCADE, null=True)
 
     class Meta:
