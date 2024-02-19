@@ -28,8 +28,9 @@ class Cargo(models.Model):
     description = models.CharField('Описание', max_length=150, null=True, blank=True)
     cargo_value = models.FloatField('Объем груза')
     cargo_weight = models.FloatField('Вес груза')
-    storage_type = models.OneToOneField(StorageType, on_delete=models.CASCADE, primary_key=True)
-    warehouse = models.ForeignKey(Warehouse, verbose_name='cargos', on_delete=models.CASCADE)
+    storage_type = models.ForeignKey(StorageType, verbose_name='Тип хранения', on_delete=models.CASCADE,
+                                     null=True)
+    warehouse = models.ForeignKey(Warehouse, verbose_name='Склад', on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = 'Груз'
