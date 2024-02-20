@@ -14,6 +14,8 @@ import environ
 
 from pathlib import Path
 
+from celery.schedules import crontab
+
 env = environ.Env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -137,11 +139,21 @@ STATIC_ROOT = BASE_DIR / "django_static"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CELERY_RESULT_BACKEND = "rpc://"
-# result_persistent = False
-CELERY_RESULT_PERSISTENT = False
-CELERY_BROKER_URL = "redis://redis:6379"
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = "tmp/app-messages"
 
-CELERY_TASK_ROUTES = {
-    'warehouses.utils.get_the_quote_of_the_day': {'queue': 'quick'},
-}
+CELERY_BROKER_URL = env("CELERY_BROKER_URL", default="redis://redis:6379/0")
+CELERY_TASK_EAGER_PROPAGATES = True
+CELERY_RESULT_PERSISTENT = False
+# http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-result_backend
+CELERY_RESULT_BACKEND = CELERY_BROKER_URL
+# http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-accept_content
+CELERY_ACCEPT_CONTENT = ["json"]
+# http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-task_serializer
+CELERY_TASK_SERIALIZER = "json"
+# http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-result_serializer
+CELERY_RESULT_SERIALIZER = "json"
+# http://docs.celeryproject.org/en/latest/userguide/configuration.html#task-time-limit
+CELERY_TASK_TIME_LIMIT = 5 * 60
+# http://docs.celeryproject.org/en/latest/userguide/configuration.html#task-soft-time-limit
+CELERY_TASK_SOFT_TIME_LIMIT = 60

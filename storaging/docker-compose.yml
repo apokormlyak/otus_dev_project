@@ -9,7 +9,7 @@ services:
         dockerfile: ./storaging/docker-build/Dockerfile
         args:
           - REQUIREMENTS_PATH=/app/requirements.txt
-      command: bash ./docker-build/start
+      command: ./docker-build/start server
       volumes:
         - .:/app
         - static_volume:/app/django_static
@@ -50,7 +50,7 @@ services:
       <<: *backend
       restart: always
       container_name: celery-worker
-      command: ./docker-build/start celery
+      command: ./docker-build/start celery-worker
       depends_on:
         - redis
         - postgres
@@ -62,7 +62,7 @@ services:
       <<: *backend
       container_name: celery-beat
       restart: always
-      command: ./docker-build/start celery-beat
+      command: ./docker-build/start celery_beat
       depends_on:
         - celery-worker
         - redis
