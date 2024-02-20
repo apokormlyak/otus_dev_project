@@ -18,7 +18,6 @@ services:
         - 8000:8000
       depends_on:
         - postgres
-        - celery-beat
       networks:
         - net
       env_file:
@@ -51,19 +50,19 @@ services:
       <<: *backend
       restart: always
       container_name: celery-worker
-      entrypoint: celery
-      command: -A settings worker --loglevel=info
+      command: ./docker-build/start celery
       depends_on:
         - redis
         - postgres
       networks:
         - net
+      ports: []
 
   celery-beat:
       <<: *backend
       container_name: celery-beat
       restart: always
-      command: -A settings beat --loglevel=info
+      command: ./docker-build/start celery-beat
       depends_on:
         - celery-worker
         - redis

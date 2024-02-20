@@ -8,8 +8,12 @@ COPY ./storaging/requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
-COPY ./storaging/docker-build/entrypoint.sh ./
-RUN chmod +x entrypoint.sh
 
 COPY . .
 
+
+COPY ./storaging/docker-build/entrypoint.sh /entrypoint
+RUN sed -i 's/\r$//g' /entrypoint && chmod +x /entrypoint
+
+COPY ./storaging/docker-build/start /start
+RUN sed -i 's/\r$//g' /start && chmod +x /start
