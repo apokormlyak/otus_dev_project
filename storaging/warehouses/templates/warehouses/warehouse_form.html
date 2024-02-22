@@ -14,7 +14,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="card text-left" >
+<div class="card text-left" style="background-color: #f8f9fa;" >
   <form method="post" id="form" class="border border-primary">
     {% csrf_token %}
     {{ form|crispy }}

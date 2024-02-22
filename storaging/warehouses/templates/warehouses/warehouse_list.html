@@ -3,7 +3,7 @@
 {% block body %}
   <h1 class="p-3">Склады:</h1>
   {% if object_list %}
-    <ul style="font-size: 1.5em" class="border border-primary p-5">
+    <ul style="font-size: 1.5em; background-color: #f8f9fa;" class="border border-primary p-5">
       {% for type in object_list %}
         <li class="m-3">
           <strong>{{ type.name }}</strong> <em>({{ type.address }})</em>.
@@ -15,7 +15,7 @@
       {% endfor %}
     </ul>
   {% else %}
-    <h2 style="font-size: 1.5em" class="border border-primary p-5">Пока нет складов</h2>
+    <h2 style="font-size: 1.5em; background-color: #f8f9fa;" class="border border-primary p-5">Пока нет складов</h2>
   {% endif %}
 <div>
     <ul class="nav flex-column" style="font-size: 1.2em">

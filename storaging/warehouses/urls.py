@@ -82,10 +82,5 @@ urlpatterns = [
         "delete_warehouse/<int:pk>/",
         views.WarehouseDeleteView.as_view(),
         name="delete_warehouse",
-    ),
-    path(
-        "quote_of_the_day/",
-        views.quote_of_the_day,
-        name="quote_of_the_day",
     )
 ]
