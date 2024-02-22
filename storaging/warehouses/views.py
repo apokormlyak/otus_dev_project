@@ -1,12 +1,16 @@
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.http import HttpResponse
 from django.urls import reverse_lazy
 
-from .models import Warehouse, StorageType, Cargo
+from .models import Warehouse, StorageType, Cargo, Quotes
 from .forms import WarehouseForm, StorageTypeForm, CargoForm
+from .tasks import cache, get_the_quote_of_the_day
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.shortcuts import render
 
+from settings.celery import app
+import logging
 
+logger = logging.getLogger(__name__)
 
 def index_view(request):
 
@@ -16,6 +20,11 @@ def index_view(request):
         # context,
     )
 
+def quote_of_the_day(request=None):
+    get_the_quote_of_the_day()
+    quote= getattr(Quotes.objects.last(), "quote")
+    author= getattr(Quotes.objects.last(), "author")
+    return HttpResponse(f'{quote} (c) {author}')
 
 class WarehouseListView(ListView):
     model = Warehouse

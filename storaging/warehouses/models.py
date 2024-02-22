@@ -34,3 +34,12 @@ class Cargo(models.Model):
     class Meta:
         verbose_name = 'Груз'
         verbose_name_plural = 'Грузы'
+
+
+class Quotes(models.Model):
+    author = models.CharField('Автор', max_length=64, db_index=True)
+    quote = models.CharField('Описание', max_length=1000, null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Цитата'
+        verbose_name_plural = 'Цитаты'

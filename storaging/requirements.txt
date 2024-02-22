@@ -4,6 +4,7 @@ django-cors-headers==4.3.1
 Werkzeug == 3.0.1
 django-extensions==3.2.3
 django-celery-beat==2.5.0
+django-celery-results==2.5.1
 django-crispy-forms==2.1
 crispy-bootstrap4==2023.1
 celery==5.3.6

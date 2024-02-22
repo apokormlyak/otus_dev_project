@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     "warehouses.apps.WarehousesConfig",
     'crispy_forms',
     'crispy_bootstrap4',
-    'django_celery_beat'
+    'django_celery_beat',
+    'django_celery_results'
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
@@ -144,7 +145,7 @@ EMAIL_FILE_PATH = "tmp/app-messages"
 
 CELERY_BROKER_URL = env("CELERY_BROKER_URL", default="redis://redis:6379/0")
 CELERY_TASK_EAGER_PROPAGATES = True
-CELERY_RESULT_PERSISTENT = False
+CELERY_RESULT_PERSISTENT = True
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-result_backend
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#std:setting-accept_content
@@ -157,3 +158,15 @@ CELERY_RESULT_SERIALIZER = "json"
 CELERY_TASK_TIME_LIMIT = 5 * 60
 # http://docs.celeryproject.org/en/latest/userguide/configuration.html#task-soft-time-limit
 CELERY_TASK_SOFT_TIME_LIMIT = 60
+
+# celery setting.
+CELERY_CACHE_BACKEND = 'default'
+
+# django setting.
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://redis:6379/0",
+    }
+}
+
