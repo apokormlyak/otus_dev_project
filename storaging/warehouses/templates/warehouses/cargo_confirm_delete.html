@@ -1,3 +1,4 @@
+{% extends './base.html' %}
 {% block title %}
 
 <h3 class="p-15">Подтверждение удаления</h3>
@@ -18,5 +19,4 @@
         </div>
         <a class="p-5 m-5" style="font-size: 1.2em" href="{% url 'warehouses:cargo_list' %}">Вернуться к списку</a>
     </form>
-  {% include './common_footer.html' %}
 {% endblock %}

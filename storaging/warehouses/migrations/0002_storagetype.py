@@ -4,13 +4,13 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-    initial = True
-
-    dependencies = []
+    dependencies = [
+        ("warehouses", "0001_initial"),
+    ]
 
     operations = [
         migrations.CreateModel(
-            name="Warehouse",
+            name="StorageType",
             fields=[
                 (
                     "id",
@@ -24,21 +24,28 @@ class Migration(migrations.Migration):
                 (
                     "name",
                     models.CharField(
-                        db_index=True, max_length=64, verbose_name="Наименование склада"
+                        db_index=True,
+                        max_length=64,
+                        verbose_name="Наименование типа хранения",
                     ),
                 ),
-                ("address", models.CharField(max_length=150, verbose_name="Адрес")),
                 (
                     "description",
                     models.CharField(
                         blank=True, max_length=150, null=True, verbose_name="Описание"
                     ),
                 ),
-                ("useful_value", models.FloatField(verbose_name="Площадь")),
+                ("storage_value", models.FloatField(verbose_name="Вместимость")),
+                (
+                    "warehouse",
+                    models.ManyToManyField(
+                        to="warehouses.warehouse", verbose_name="Склад"
+                    ),
+                ),
             ],
             options={
-                "verbose_name": "Склад",
-                "verbose_name_plural": "Склады",
+                "verbose_name": "Тип хранения",
+                "verbose_name_plural": "Типы хранения",
             },
         ),
     ]

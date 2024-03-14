@@ -45,11 +45,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "warehouses.apps.WarehousesConfig",
     'crispy_forms',
     'crispy_bootstrap4',
     'django_celery_beat',
-    'django_celery_results'
+    'django_celery_results',
+    "warehouses.apps.WarehousesConfig"
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
