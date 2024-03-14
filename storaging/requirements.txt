@@ -9,6 +9,9 @@ django-crispy-forms==2.1
 crispy-bootstrap4==2023.1
 celery==5.3.6
 redis==5.0.1
+pytest==7.4.3
+pytest-django==4.7.0
+pytest-cov==4.1.0
 
 # Django REST Framework
 djangorestframework==3.14.0  # https://github.com/encode/django-rest-framework
