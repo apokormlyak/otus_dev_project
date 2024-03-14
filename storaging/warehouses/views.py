@@ -9,6 +9,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 def index_view(request):
 
     return render(
@@ -16,6 +17,7 @@ def index_view(request):
         "warehouses/index.html",
         # context,
     )
+
 
 class WarehouseListView(ListView):
     model = Warehouse
@@ -34,10 +36,12 @@ class WarehouseCreateView(CreateView):
         data = form.cleaned_data
         return super().form_valid(form)
 
+
 class WarehouseTypeUpdateView(UpdateView):
     model = Warehouse
     fields = ('name', 'description')
     success_url = reverse_lazy('warehouses:warehouse_list')
+
 
 class WarehouseDeleteView(DeleteView):
     model = Warehouse
@@ -61,14 +65,17 @@ class StorageTypeCreateView(CreateView):
         data = form.cleaned_data
         return super().form_valid(form)
 
+
 class StorageTypeUpdateView(UpdateView):
     model = StorageType
     fields = ('name', 'description')
     success_url = reverse_lazy('warehouses:storagetype_list')
 
+
 class StorageTypeDeleteView(DeleteView):
     model = StorageType
     success_url = reverse_lazy('warehouses:storagetype_list')
+
 
 class CargoListView(ListView):
     model = Cargo
@@ -87,12 +94,13 @@ class CargoCreateView(CreateView):
         data = form.cleaned_data
         return super().form_valid(form)
 
+
 class CargoUpdateView(UpdateView):
     model = Cargo
     fields = ('name', 'description', 'cargo_value', 'cargo_weight')
     success_url = reverse_lazy('warehouses:cargo_list')
 
+
 class CargoDeleteView(DeleteView):
     model = Cargo
     success_url = reverse_lazy('warehouses:cargo_list')
-

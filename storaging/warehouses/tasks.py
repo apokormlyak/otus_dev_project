@@ -21,4 +21,3 @@ def get_the_quote_of_the_day(self):
     cache.set('quote', quote_of_the_day['body'])
     cache.set('author', quote_of_the_day['author'])
     logger.info("[TASK] The quote of the day saved")
-
