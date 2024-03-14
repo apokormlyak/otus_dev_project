@@ -21,7 +21,9 @@ docker-compose run --rm backend ./manage.py createsuperuser
 ```
 ### Приложение доступно по адресу: http://localhost:8000/warehouses/
 
+
 ### админка доступна по адресу: http://localhost:8000/admin/
+
 
 ### тесты
 ```
