@@ -4,16 +4,13 @@ WORKDIR /app
 
 RUN pip install --upgrade pip
 
-COPY ./storaging/requirements.txt requirements.txt
+COPY ./storaging .
 
 RUN pip install -r requirements.txt
 
 
-COPY . .
+RUN sed -i 's/\r$//g' docker-build/entrypoint.sh && chmod +x docker-build/entrypoint.sh
 
 
-COPY ./storaging/docker-build/entrypoint.sh /entrypoint
-RUN sed -i 's/\r$//g' /entrypoint && chmod +x /entrypoint
+RUN sed -i 's/\r$//g' docker-build/start && chmod +x docker-build/start
 
-COPY ./storaging/docker-build/start /start
-RUN sed -i 's/\r$//g' /start && chmod +x /start
